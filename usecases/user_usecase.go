@@ -8,11 +8,15 @@ type UserData interface {
 	GetUser(username string) (user entities.User, err error)
 }
 
+type UserUseCase interface {
+	Login(username string, password string) (success bool, err error)
+}
+
 type userUseCase struct {
 	Data UserData
 }
 
-func NewUserUseCase(ud UserData) userUseCase {
+func NewUserUseCase(ud UserData) UserUseCase {
 	return userUseCase{Data: ud}
 }
 
