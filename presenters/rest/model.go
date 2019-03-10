@@ -6,8 +6,8 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
-type User struct {
+type Movie struct {
 	ID       uint64 `json:"id"`
-	Username string `json:"username"`
-	Fullname string `json:"fullname"`
+	Title    string `json:"title"`
+	Director string `json:"director"`
 }

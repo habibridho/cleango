@@ -14,11 +14,21 @@ type MovieData interface {
 	SaveLike(userID uint64, movieID uint64, status bool) error
 }
 
+type MovieUseCase interface {
+	GetMovieList() (data []entities.Movie, err error)
+	LikeDislike(userID uint64, movieID uint64, status bool) (err error)
+}
+
 type movieUseCase struct {
 	Data MovieData
 }
 
-func NewMovieUseCase(md MovieData) movieUseCase {
+const (
+	ERR_INVALID_USER  = "invalid user"
+	ERR_INVALID_MOVIE = "invalid movie"
+)
+
+func NewMovieUseCase(md MovieData) MovieUseCase {
 	return movieUseCase{Data: md}
 }
 
@@ -40,7 +50,7 @@ func (uc movieUseCase) LikeDislike(userID uint64, movieID uint64, status bool) (
 		return
 	}
 	if user.ID == 0 {
-		err = errors.New("invalid user")
+		err = errors.New(ERR_INVALID_USER)
 		return
 	}
 
@@ -49,7 +59,7 @@ func (uc movieUseCase) LikeDislike(userID uint64, movieID uint64, status bool) (
 		return
 	}
 	if movie.ID == 0 {
-		err = errors.New("invalid movie")
+		err = errors.New(ERR_INVALID_MOVIE)
 		return
 	}
 
