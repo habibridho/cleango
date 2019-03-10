@@ -16,10 +16,10 @@ func (m MockDataSource) GetUser(username string) (user entities.User, err error)
 
 func TestUserUseCase_Login(t *testing.T) {
 	mDataSource := MockDataSource{}
-	uc := NewUserUseCase(mDataSource)
+	usecase := NewUserUseCase(mDataSource)
 
 	t.Run("Positive test", func(t *testing.T) {
-		success, err := uc.Login("habibridho", "123")
+		success, err := usecase.Login("habibridho", "123")
 		if err != nil {
 			t.Fatalf("There shouldn't be any error. Got: %v", err)
 		}
@@ -30,7 +30,7 @@ func TestUserUseCase_Login(t *testing.T) {
 	})
 
 	t.Run("Negative test", func(t *testing.T) {
-		success, err := uc.Login("habibridho", "456")
+		success, err := usecase.Login("habibridho", "456")
 		if err != nil {
 			t.Fatalf("There shouldn't be any error. Got: %v", err)
 		}

@@ -29,9 +29,9 @@ func (m MockMovieDataSource) SaveLike(userID uint64, movieID uint64, status bool
 
 func TestMovieUseCase_GetMovieList(t *testing.T) {
 	mDataSource := MockMovieDataSource{}
-	uc := NewMovieUseCase(mDataSource)
+	usecase := NewMovieUseCase(mDataSource)
 
-	_, err := uc.GetMovieList()
+	_, err := usecase.GetMovieList()
 	if err != nil {
 		t.Fatalf("There should be no error, got: %v", err)
 	}
@@ -39,9 +39,9 @@ func TestMovieUseCase_GetMovieList(t *testing.T) {
 
 func TestMovieUseCase_LikeDislike(t *testing.T) {
 	mDataSource := MockMovieDataSource{}
-	uc := NewMovieUseCase(mDataSource)
+	usecase := NewMovieUseCase(mDataSource)
 
-	err := uc.LikeDislike(1, 1, true)
+	err := usecase.LikeDislike(1, 1, true)
 	if err != nil {
 		t.Fatalf("There should be no error, got: %v", err)
 	}
