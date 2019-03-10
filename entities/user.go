@@ -7,6 +7,6 @@ type User struct {
 	Password string
 }
 
-func (u User) SetFullname(firstName string, lastName string) {
+func (u *User) SetFullname(firstName string, lastName string) {
 	u.Fullname = firstName + " " + lastName
 }
