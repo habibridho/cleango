@@ -1,8 +1,8 @@
 package usecases
 
 import (
+	"errors"
 	"github.com/habibridho/cleango/entities"
-	"github.com/kataras/go-errors"
 )
 
 type UserData interface {
@@ -17,7 +17,7 @@ func NewUserUseCase(ud UserData) *userUseCase {
 	return &userUseCase{Data: ud}
 }
 
-func (uc *userUseCase) login(username string, password string) (success bool, err error) {
+func (uc *userUseCase) Login(username string, password string) (success bool, err error) {
 	user, err := uc.Data.GetUser(username)
 	if err != nil {
 		return
