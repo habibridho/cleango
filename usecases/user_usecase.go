@@ -1,7 +1,6 @@
 package usecases
 
 import (
-	"errors"
 	"github.com/habibridho/cleango/entities"
 )
 
@@ -24,7 +23,7 @@ func (uc *userUseCase) Login(username string, password string) (success bool, er
 	}
 
 	if user.Password != password {
-		err = errors.New("Password not match")
+		success = false
 		return
 	}
 
