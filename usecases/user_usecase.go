@@ -12,11 +12,11 @@ type userUseCase struct {
 	Data UserData
 }
 
-func NewUserUseCase(ud UserData) *userUseCase {
-	return &userUseCase{Data: ud}
+func NewUserUseCase(ud UserData) userUseCase {
+	return userUseCase{Data: ud}
 }
 
-func (uc *userUseCase) Login(username string, password string) (success bool, err error) {
+func (uc userUseCase) Login(username string, password string) (success bool, err error) {
 	user, err := uc.Data.GetUser(username)
 	if err != nil {
 		return

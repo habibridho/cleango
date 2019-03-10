@@ -18,16 +18,16 @@ type movieUseCase struct {
 	Data MovieData
 }
 
-func NewMovieUseCase(md MovieData) *movieUseCase {
-	return &movieUseCase{Data: md}
+func NewMovieUseCase(md MovieData) movieUseCase {
+	return movieUseCase{Data: md}
 }
 
-func (uc *movieUseCase) GetMovieList() (data []entities.Movie, err error) {
+func (uc movieUseCase) GetMovieList() (data []entities.Movie, err error) {
 	data, err = uc.Data.GetMovies()
 	return
 }
 
-func (uc *movieUseCase) LikeDislike(userID uint64, movieID uint64, status bool) (err error) {
+func (uc movieUseCase) LikeDislike(userID uint64, movieID uint64, status bool) (err error) {
 	if err = uc.Data.StartTransaction(); err != nil {
 		return
 	}

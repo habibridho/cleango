@@ -7,7 +7,7 @@ import (
 
 type MockDataSource struct{}
 
-func (m *MockDataSource) GetUser(username string) (user entities.User, err error) {
+func (m MockDataSource) GetUser(username string) (user entities.User, err error) {
 	return entities.User{
 		Username: "habibridho",
 		Password: "123",
@@ -15,7 +15,7 @@ func (m *MockDataSource) GetUser(username string) (user entities.User, err error
 }
 
 func TestUserUseCase_Login(t *testing.T) {
-	mDataSource := &MockDataSource{}
+	mDataSource := MockDataSource{}
 	uc := NewUserUseCase(mDataSource)
 
 	t.Run("Positive test", func(t *testing.T) {
